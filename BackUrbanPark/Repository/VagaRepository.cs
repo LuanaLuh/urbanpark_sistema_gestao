@@ -8,21 +8,27 @@ using System.Threading.Tasks;
 
 namespace backUrbanPark.Repository
 {
-    public class VagaRepository
+    public static class VagaRepository
     {
-       ///<summary>
-       /// <summary>
-       /// Insere uma vaga no banco de dados
-       /// </summary>
-       /// <param name="vaga"></param>
-       /// <returns></returns>
+        ///<summary>
+        /// <summary>
+        /// Insere uma vaga no banco de dados
+        /// </summary>
+        /// <param name="vaga"></param>
+        /// <returns></returns>
 
-        public int Inserir(Vaga vaga)
+        public static int Inserir(Vaga vaga)
         {
             return 1;
         }
 
-        public Vaga? BuscarPorId(int id)
+
+        /// <summary>
+        /// Buscar uma vaga especifica pelo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static Vaga? ListarPorId(int id)
         {
             string sql = "SELECT id_vaga, numero_vaga, tipo, status FROM vagas WHERE id = @id";
             using (var cmd = new MySqlCommand(sql))
@@ -33,25 +39,59 @@ namespace backUrbanPark.Repository
                 {
                     if (reader.Read())
                     {
-                        /// MAPEAMENTO DO RETORNO DO BANCO PARA OBJETO VAGA
-                        /// 
+                       return MapearVaga(reader);
+                    }
+                }
+            }
+            return null;
+        }
 
-                        int id_vaga = reader.GetInt32("id");
-                        int numero_vaga = reader.GetInt32("numero_vaga");
-                        TipoVaga tipoVaga = Enum.Parse<TipoVaga>(reader.GetString("tipo"));
-                        TipoStatus tipoStatus = Enum.Parse<TipoStatus>(reader.GetString("status"));
+        /// <summary>
+        /// Retorna todas as vagas cadastradas 
+        /// </summary>
+        /// <returns></returns>
 
+        public static List<Vaga> ListarTodas()
+        {
+            string sql = "SELECT id_vaga, numero_vaga, tipo, status FROM vagas";
 
-                        Vaga vagaBanco = new Vaga(id_vaga, numero_vaga, tipoVaga, tipoStatus);
+            List<Vaga> vagas = new();
+
+            using (var cmd = new MySqlCommand(sql))
+            {
+
+                using (var reader = Banco.ExecutarConsulta(cmd))
+                {
+                    while (reader.Read())
+                    {
+                        vagas.Add(MapearVaga(reader));
+                        
                     }
 
                 }
-                
-               
-                }
-            } 
+            }
+            return vagas;
         }
 
+        /// <summary>
+        /// Metodo auxiliar para coverter uma linbha do MySqlDataRerader em um objeto Vaga
+        /// </summary
+        /// <param name="reader"></param>
+        /// <returns></returns>
 
+
+        private static Vaga MapearVaga(MySqlDataReader reader)
+        {
+            /// MAPEAMENTO DO RETORNO DO BANCO PARA OBJETO VAGA
+            /// 
+
+            int id_vaga = reader.GetInt32("id_vaga");
+            int numero_vaga = reader.GetInt32("numero_vaga");
+            TipoVaga tipoVaga = Enum.Parse<TipoVaga>(reader.GetString("tipo"));
+            TipoStatus tipoStatus = Enum.Parse<TipoStatus>(reader.GetString("status"));
+
+
+            return new Vaga(id_vaga, numero_vaga, tipoVaga, tipoStatus);
+        }
     }
-
+ }
