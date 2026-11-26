@@ -38,6 +38,7 @@
             flwCardVagas.Name = "flwCardVagas";
             flwCardVagas.Size = new Size(800, 450);
             flwCardVagas.TabIndex = 0;
+            flwCardVagas.Paint += flwCardVagas_Paint;
             // 
             // frmListVagas
             // 

@@ -32,25 +32,38 @@ namespace frmUrbanPark
 
             flwCardVagas.Controls.Clear();
 
-            foreach(Vaga vaga in listaDeVagas)
+            foreach (Vaga vaga in listaDeVagas)
             {
                 string strNumeroVaga = vaga.Numero_vaga.ToString();
                 statusVaga statusVaga = Enum.Parse<statusVaga>(vaga.Tipostatus.ToString());
                 int idVaga = vaga.Id;
 
                 ctrStatusVagas cardVaga = new ctrStatusVagas();
+
                 cardVaga.IdVaga = idVaga;
                 cardVaga.StatusVaga = statusVaga;
                 cardVaga.NumeroVaga = strNumeroVaga;
 
+                cardVaga.CardClicado += cardVaga_click;
+
 
                 flwCardVagas.Controls.Add(cardVaga);
 
-
             }
+        }
 
+        public void cardVaga_click(object sender, EventArgs e)
+        {
+            ctrStatusVagas cardSelecionado = (ctrStatusVagas)sender;
+            MessageBox.Show($"Vaga: {cardSelecionado.NumeroVaga} Status: {cardSelecionado.StatusVaga} ");
+        }
 
+        private void flwCardVagas_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }
+
+
 }
+

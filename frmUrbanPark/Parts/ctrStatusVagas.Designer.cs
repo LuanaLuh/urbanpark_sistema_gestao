@@ -36,7 +36,7 @@
             // picStatusVaga
             // 
             picStatusVaga.Image = Properties.Resources.carlconVerde;
-            picStatusVaga.Location = new Point(44, 59);
+            picStatusVaga.Location = new Point(50, 62);
             picStatusVaga.Name = "picStatusVaga";
             picStatusVaga.Size = new Size(50, 50);
             picStatusVaga.TabIndex = 0;
@@ -48,19 +48,22 @@
             lblNumeroVaga.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNumeroVaga.Location = new Point(0, 0);
             lblNumeroVaga.Name = "lblNumeroVaga";
-            lblNumeroVaga.Size = new Size(150, 38);
+            lblNumeroVaga.Size = new Size(148, 38);
             lblNumeroVaga.TabIndex = 1;
             lblNumeroVaga.Text = "01";
+            lblNumeroVaga.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // ctrStatusVagas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(223, 247, 231);
+            BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(lblNumeroVaga);
             Controls.Add(picStatusVaga);
             Name = "ctrStatusVagas";
-            Load += ctrStatusVagas_Load;
+            Size = new Size(148, 148);
+            Load += ctrStatusVagas_Load_1;
             ((System.ComponentModel.ISupportInitialize)picStatusVaga).EndInit();
             ResumeLayout(false);
         }
