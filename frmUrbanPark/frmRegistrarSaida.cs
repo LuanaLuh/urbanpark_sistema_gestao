@@ -16,5 +16,25 @@ namespace frmUrbanPark
         {
             InitializeComponent();
         }
+
+        private void lblValorAPagar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpBuscarVeiculo_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picBuscarPlaca_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
