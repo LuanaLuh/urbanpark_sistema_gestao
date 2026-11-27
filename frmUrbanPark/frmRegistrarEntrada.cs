@@ -48,12 +48,13 @@ namespace frmUrbanPark
                  MessageBoxIcon.Exclamation
                  );
 
-
+                btnRegistrarEntrada.Enabled = false;
                 txtNomeCliente.Clear();
                 txtCorModelo.Clear();
                 return;
             }
 
+            btnRegistrarEntrada.Enabled = true;
             txtNomeCliente.Text = dadosVeiculo.NomeCliente;
             txtCorModelo.Text = $"{dadosVeiculo.Cor}/{dadosVeiculo.Modelo}";
         }
