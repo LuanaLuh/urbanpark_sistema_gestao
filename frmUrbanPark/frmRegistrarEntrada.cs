@@ -16,5 +16,20 @@ namespace frmUrbanPark
         {
             InitializeComponent();
         }
+
+        private void dtInfoDtEntrada_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmRegistrarEntrada_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
